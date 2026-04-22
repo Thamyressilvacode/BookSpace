@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Julius+Sans+One&display=swap');
+
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12%;
+
+    font-family: 'Bagel fat One';
+    font-size: 600%;
+    color: #94624c;
+}
+
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+
+    font-family: 'julius sans one';
+    font-size: 150%;
+    color: #94624c;
+}
+
+h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+
+    font-family: 'julius sans one';
+    font-size: 160%;
+    color: #94624c;
+}
