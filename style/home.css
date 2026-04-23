@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Julius+Sans+One&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Julius+Sans+One&display=swap');
+ /*face*/
 h1{
     display: flex;
     align-items: center;
@@ -33,3 +32,164 @@ h3{
     font-size: 160%;
     color: #94624c;
 }
+
+/*tela informativa*/
+
+.tela_informativa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    height: 70%;
+    width: 100%;
+    margin-top: 4%;
+
+    background-color: #a3caea;
+}
+
+.texto_informativo{
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'julius sans one';
+    color: #94624c;
+    font-size: 30px;
+}
+
+.img_informativo{
+    max-width: 80%;
+    height: auto;
+}
+
+/*tela habitos*/
+
+.titulo_habitos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7%;
+
+    font-family: 'julius sans one';
+    font-size: 300%;
+    color: #94624c;
+}
+
+.blocos_habitos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 3%;
+    
+}
+
+.bloco1{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 250px;
+    width: 250px;
+
+
+    margin-left: 30px;
+    margin-right: 20px;
+
+    border: 3px dotted #94624c;
+    border-radius: 10%;
+
+    font-family: 'julius sans one';
+    color: #94624c;
+    font-size: 30px;
+    text-align: center;
+}
+
+.bloco2{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 250px;
+    width: 250px;
+
+
+    margin-left: 30px;
+    margin-right: 20px;
+
+    border: 3px dotted #94624c;
+    border-radius: 10%;
+
+    font-family: 'julius sans one';
+    color: #94624c;
+    font-size: 30px;
+    text-align: center;
+}
+
+.bloco3{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 250px;
+    width: 250px;
+
+
+    margin-left: 30px;
+    margin-right: 20px;
+
+    border: 3px dotted #94624c;
+    border-radius: 10%;
+
+    font-family: 'julius sans one';
+    color: #94624c;
+    font-size: 30px;
+    text-align: center;
+}
+
+/*tela beneficios*/
+
+.tela_beneficios{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+
+    width: 100%;
+    margin-top: 7%;
+    background-color: #a3caea;
+}
+
+.img_beneficios{
+    max-width: 25%;
+}
+
+.full_beneficios{
+    background-color: #ffd6df;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo_beneficios{
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 7%;
+    
+    
+    font-family: 'julius sans one';
+    color: #94624c;
+    font-size: 40px;
+}
+
+.texto_beneficios{
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-bottom: 7%;
+
+    font-family: 'DM Sans';
+    color: #94624c;
+    font-size: 20px;
+}
+
+/*bibliotecas*/
