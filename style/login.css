@@ -30,12 +30,16 @@ h2{
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+
+    font-family: 'Julius sans one';
 }
 h3{
     display: flex;
     align-items: left;
     justify-content: left;
     margin-bottom: 3px;
+    font-family: 'Julius sans one';
+    font-size: 17px;
 }
 
 .full{
@@ -60,7 +64,7 @@ h3{
     width: 60%;
 
     border-radius: 33px;
-    border: #f89fc2 solid 3px;
+    border: #ff5396 solid 3px;
 
 }
 
@@ -91,7 +95,7 @@ input{
 }
 
 .img_class {
-    background-image: url("/icons/fundo\ rosa.png");
+    background-image: url("../icons/fundorosa.png");
     height: 100%;
     width: 100%;
     background-size: cover;

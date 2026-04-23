@@ -14,7 +14,7 @@ body{
 }
 
 .img_class {
-    background-image: url("/icons/fundo\ azul.png");
+    background-image: url("../icons/fundoamarelo.png");
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -38,12 +38,19 @@ h2{
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+
+    font-family: 'Julius sans one';
+
 }
 h3{
     display: flex;
     align-items: right;
     justify-content: left;
     margin-bottom: 3px;
+
+    font-family: 'Julius sans one';
+    font-size: 17px;
+
 }
 
 .full{
@@ -68,7 +75,7 @@ h3{
     width: 60%;
 
     border-radius: 33px;
-    border: #a3caea solid 3px;
+    border: #ffbd59 solid 3px;
 
 }
 

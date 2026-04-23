@@ -43,19 +43,21 @@ h3{
 
     height: 70%;
     width: 100%;
-    margin-top: 4%;
+    margin-top: 7%;
 
-    background-color: #a3caea;
+    background-color: #ffbd59;
 }
 
 .texto_informativo{
-    margin-left: 30px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
     font-family: 'julius sans one';
-    color: #94624c;
-    font-size: 30px;
+    color: #fff9e8;
+    font-size: 25px;
+    line-height: 1.5;
 }
 
 .img_informativo{
@@ -158,7 +160,7 @@ h3{
 
     width: 100%;
     margin-top: 7%;
-    background-color: #a3caea;
+    background-color: #ff5396;
 }
 
 .img_beneficios{
@@ -166,7 +168,7 @@ h3{
 }
 
 .full_beneficios{
-    background-color: #ffd6df;
+    background-color: #fff9e8;
     align-items: center;
     justify-content: center;
 }
@@ -193,3 +195,86 @@ h3{
 }
 
 /*bibliotecas*/
+
+.tela_bibliotecas{
+    text-align: center;
+    margin-top: 7%;
+}
+
+.titulo_bibliotecas{
+    font-family: 'julius sans one';
+    font-size: 30px;
+    color: #94624c;
+}
+
+.bloco_bibliotecas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+
+.img_biblioteca1{
+    width: 70%;
+}
+
+.texto_biblioteca1{
+    font-size: 20px;
+    font-family: 'julius sans one';
+    color: #94624c;
+}
+
+.img_biblioteca2{
+    width: 70%;
+}
+
+.texto_biblioteca2{
+    font-size: 20px;
+    font-family: 'julius sans one';
+    color: #94624c;
+}
+
+.img_biblioteca3{
+    width: 70%;
+}
+
+.texto_biblioteca3{
+    font-size: 20px;
+    font-family: 'julius sans one';
+    color: #94624c;
+}
+
+/*Footer*/
+.futter{
+    margin-top: 7%;
+}
+
+.img_futter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    background-color: #ff5396;
+}
+
+.img_github{
+    width: 3%;
+    margin-right: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.img_linkedin{
+    width: 3%;
+    margin-left: 5px;
+    margin-top: 2%; 
+    margin-bottom: 2%;
+}
+
+.texto_futter{
+    text-align: center;
+    font-family: 'Julius sans one';
+    color: #94624c;
+}

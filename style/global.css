@@ -13,7 +13,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f89fc2;
+    background-color: #ff5396;
     
     font-size: 25px;
 }
@@ -22,11 +22,31 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 7%;  
+    width: 9%;  
 }
 
 .home_btn{
     margin-top: 0.0%;
+    margin-bottom: 0%;
+    margin-left: 3%;
+
+    font-family: 'Julius Sans One';
+    text-decoration: none;
+    color: #fff9e8;
+}
+
+.dash_btn{
+    margin-top: 0.0%;
+    margin-bottom: 0%;
+    margin-left: 3%;
+
+    font-family: 'Julius Sans One';
+    text-decoration: none;
+    color: #fff9e8;
+}
+
+.biblioteca_btn{
+    argin-top: 0.0%;
     margin-bottom: 0%;
     margin-left: 3%;
 
