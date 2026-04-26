@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/cadastro.css">
+    <title>BookSpace</title>
+</head>
+<body>
+
+    <div class="img_class"></div>
+    
+    <div class="full">
+        
+        <h1><img src="./icons/2.png" alt=""></h1>
+
+        <div class="cadastro_class">
+
+            <div class="img_icon"><img src="./icons/3.png" alt=""></div>
+
+            <h2>CADASTRO</h2>
+
+            <div class="inputs_div">
+                <h3>Nome</h3>
+                <input type="text" id="nomeCadastro_ipt"><br>
+                <h3>Email</h3>
+                <input type="text" id="emailCadastro_ipt"><br>
+                <h3>Senha</h3>
+                <input type="password" id="senhaCadastro_ipt"><br>
+                <h3>Confirme sua senha</h3>
+                <input type="password" id="confimacaoSenhaCadastro_ipt">
+
+            </div>
+
+        
+
+            <button id="cadastrar_btn" onclick="Cadastrar()">Cadastrar</button><br>
+        </div>
+
+        
+    </div>
+<script>
+function Cadastrar() {
+
+    var nomeVar = nomeCadastro_ipt.value;
+    var emailVar = emailCadastro_ipt.value;
+    var senhaVar = senhaCadastro_ipt.value;
+    var confirmacaoSenhaVar = confimacaoSenhaCadastro_ipt.value;
+
+    // Validação básica
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    if (senhaVar != confirmacaoSenhaVar) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    // Enviando para o backend
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            alert("Cadastro realizado com sucesso!");
+
+            // Redireciona (opcional)
+            window.location = "login.html";
+        } else {
+            resposta.text().then(texto => {
+                alert(texto);
+            });
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+    });
+
+}
+</script>
+</body>
+</html>

@@ -18,11 +18,27 @@ body{
     font-size: 25px;
 }
 
-.logo_navbar{
+.navbar {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 9%;  
+    justify-content: space-between; /* separa esquerda, centro e direita */
+}
+
+/* Logo centralizada visualmente */
+.logo_navbar {
+    width: 120px;
+    cursor: pointer;
+}
+
+/* Botão de login (lado direito) */
+.login_btn {
+    display: flex;
+    align-items: center;
+}
+
+.img_login {
+    width: 40px; /* 90px estava muito grande */
+    cursor: pointer;
 }
 
 .home_btn{
@@ -46,7 +62,7 @@ body{
 }
 
 .biblioteca_btn{
-    argin-top: 0.0%;
+    margin-top: 0.0%;
     margin-bottom: 0%;
     margin-left: 3%;
 
