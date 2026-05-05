@@ -11,9 +11,9 @@
 
     <header>
         <nav class="navbar">
-            <a href="../home.html" class="home_btn">Home</a>
+            <a href="home.html" class="home_btn">Home</a>
             <img src="../icons/4.png" alt="" class="logo_navbar">
-            <a href="login.html"><img src="../icons/5.png" alt="" class="img_login"></a>
+            <img onclick="redirecionar()" src="../icons/5.png" alt="" class="img_login">
         </nav>
     </header>
 
@@ -140,8 +140,14 @@
         </div>
         
         <div class="texto_futter">
-            Projeto Desenvolvido Para Fins Educacionais por Thamyres Batista
+            Projeto Desenvolvido Para Fins Educacionais por  Thamyres Batista
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    function redirecionar(){
+        window.location = "login.html"
+    }
+</script>
