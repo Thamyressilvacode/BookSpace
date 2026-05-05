@@ -1,1 +1,150 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Julius+Sans+One&display=swap');
+
+body{
+    width: 100%;
+}
+.bloco1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1.5%;
+}
+/* Bloco meta de leitura*/
+.meta_leitura{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 600px;
+    height: 170px;
+
+    border-radius: 33px;
+    background-color: #ffbd59;
+
+    color: #fff9e8;
+    font-size: 27px;
+    font-family: Julius Sans One;
+}
+
+.bloco_meta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.metrica_leitura{
+    margin-top: 10px;
+    font-size: 45px;
+}
+
+.grafico_dunut{
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+}
+
+/* Bloco paginas lidas*/
+
+.paginas_lidas{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 600px;
+    height: 170px;
+
+    border-radius: 33px;
+    background-color: #ffbd59;
+
+    color: #fff9e8;
+    font-size: 27px;
+    font-family: Julius Sans One;
+}
+
+.texto1_paginas_lidas{
+    text-align: center;
+
+    margin-left: 120px;
+    font-size: 40px;
+}
+
+.metrica_paginas_lidas{
+    text-align: center;
+
+    margin-right: 120px;
+    font-size: 60px;
+}
+
+
+.bloco_2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+
+    
+    border: 4px solid #ff5396;
+    border-radius: 33px;
+}
+
+.grafico_barras1{
+    width:35%;
+    height: 350px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 8%;
+    margin-left: 8%;
+}
+
+.grafico_barras2{
+    width: 35%;
+    height: 350px;
+    margin-left: 8%;
+    margin-top: 2%;
+    margin-right: 8%;
+}
+
+
+
+
+/*Footer*/
+.futter {
+    margin-top: 7%;
+    padding: 20px 0;
+}
+
+.img_futter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5396;
+    gap: 25px;
+}
+
+.img_github,
+.img_linkedin {
+    width: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.img_github:hover,
+.img_linkedin:hover {
+    transform: scale(1.15);
+}
+
+.texto_futter {
+    text-align: center;
+    font-family: 'Julius Sans One', sans-serif;
+    color: #94624c;
+    margin-top: 15px;
+    font-size: 1rem;
+}

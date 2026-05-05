@@ -1,37 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/global.css">
-    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../public/style/global.css">
+    <link rel="stylesheet" href="../public/style/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BookSpace</title>
 </head>
+
 <body>
     <header>
         <nav class="navbar">
             <a href="../home.html" class="home_btn">Home</a>
             <a href="../dashboard.html" class="dash_btn">Dashboard</a>
-            <img src="../icons/4.png" alt="" class="logo_navbar">
+            <img src="../public/icons/4.png" alt="" class="logo_navbar">
             <a href="../biblioteca.html" class="biblioteca_btn">Minha Biblioteca</a>
-            <img src="../icons/5.png" alt="" class="img_login" href="login.html">
+            <img src="../public/icons/5.png" alt="" class="img_login" href="login.html">
         </nav>
     </header>
 
-    <div class="metricas1">
-        <div class="meta_leitura_visu">
-        
+    <div class="bloco1">
+        <div class="meta_leitura">
+            <div class="bloco_meta">
+                <div class="texto_meta">
+                    Meta de leitura<br>
+                para este ano<br>
+                </div>
+
+                <div class="metrica_leitura">52/104</div>
+            </div>
+
+            <div class="grafico_dunut">
+                <canvas id="grafico_meta"></canvas>
+            </div>
         </div>
 
         <div class="paginas_lidas">
+            <div class="texto1_paginas_lidas">
+                Páginas<br>Lidas em<br>2026
+            </div>
 
+            <div class="metrica_paginas_lidas">9.576</div>
         </div>
     </div>
 
-    <div class="adicionar_livro">
-        Adicione seu novo livro em suas métricas<br>
+    <div class="bloco_2">
+        <div class="grafico_barras1">
+            <canvas id="grafico_generos"></canvas>
+        </div>
+
+        <div class="grafico_barras2">
+            <canvas id="grafico_lidos"></canvas>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            Dias de leitura mês de dezembro
+            <div>
+                <div id="dia1"></div>
+                <div id="dia2"></div>
+                <div id="dia3"></div>
+                <div id="dia4"></div>
+                <div id="dia5"></div>
+                <div id="dia6"></div>
+                <div id="dia7"></div>
+                <div id="dia8"></div>
+                <div id="dia9"></div>
+                <div id="dia10"></div>
+                <div id="dia11"></div>
+                <div id="dia12"></div>
+                <div id="dia13"></div>
+                <div id="dia14"></div>
+                <div id="dia15"></div>
+                <div id="dia16"></div>
+                <div id="dia17"></div>
+                <div id="dia18"></div>
+                <div id="dia19"></div>
+                <div id="di20"></div>
+                <div id="dia21"></div>
+                <div id="dia22"></div>
+                <div id="dia23"></div>
+                <div id="dia24"></div>
+                <div id="dia25"></div>
+                <div id="dia26"></div>
+                <div id="dia27"></div>
+                <div id="dia28"></div>
+                <div id="dia29"></div>
+                <div id="dia30"></div>
+                <div id="dia31"></div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                Meta de leitura anual
+                <input type="text">
+                <button>inserir</button>
+            </div>
+
+            <div>Você é o TOP<br>
+                #2 leitores<br>
+                do BookSpace<br>
+            </div>
+        </div>
+    </div>
+
+    <div class="futter">
         
-        <div class=""></div>
+        <div class="img_futter">
+            <a href="https://github.com/Thamyressilvacode"><img class="img_github" src="../public/icons/6.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/thamyres-batista-0ab3b4216/"><img class="img_linkedin" src="../public/icons/7.png" alt=""></a>
+        </div>
+        
+        <div class="texto_futter">
+            Projeto Desenvolvido Para Fins Educacionais por Thamyres Batista
+        </div>
     </div>
 </body>
 </html>
+
+<script>
+
+// grafico de meta
+
+    const meta = document.getElementById('grafico_meta');
+
+    const centerTextPlugin = {
+      id: 'centerText',
+      beforeDraw: function(chart) {
+        const { ctx: metaCtx, chartArea: { width, height } } = chart;
+        
+        const lidos = chart.data.datasets[0].data[0];
+        const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+        const porcentagem = Math.round((lidos / total) * 100);
+
+        metaCtx.save();
+        metaCtx.font = 'bold 30px Julius Sans One';
+        metaCtx.textAlign = 'center';
+        metaCtx.textBaseline = 'middle';
+        metaCtx.fillStyle = '#fff9e8';
+        
+        const centerX = width / 2;
+        const centerY = height / 2 + 5;
+        
+        metaCtx.fillText(porcentagem + '%', centerX, centerY);
+        metaCtx.restore();
+      }
+    };
+
+    new Chart(meta, {
+      type: 'doughnut',
+      data: {
+        labels: ['Livros Lidos', 'Livros Não Lidos'],
+        datasets: [{
+          data: [50, 50],
+          backgroundColor: ['#ee3a86', '#fefcd0'],
+          borderWidth: 0,
+          hoverOffset: 20
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutout: '70%',
+        
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      },
+      plugins: [centerTextPlugin]
+    });
+
+//grafico generos
+
+    let ctxBarra = document.getElementById("grafico_generos").getContext("2d")
+    new Chart(ctxBarra, {
+        type: "bar",
+        data: {
+            labels: ["Romance", "Fantasia", "Terror", "Auto Ajuda","Suspense","Drama"],
+            datasets: [{
+                data: [20, 14, 7, 4,3,4],
+                backgroundColor: ["#ffbd59"],
+                barPercentage: 1.0
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display:false}
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { beginAtZero: true }
+            }
+        }
+    })
+
+//grafico lidos
+
+let lidos = document.getElementById("grafico_lidos").getContext("2d")
+    new Chart(lidos, {
+        type: "bar",
+        data: {
+            labels: ["Janeiro", "Fevereiro", "Março", "Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
+            datasets: [{
+                data: [5,7,4,3,2,4,6,8,4,3,4,2],
+                backgroundColor: ["#ef737c","#ffbd59","#ffde59","#aac861","#77d268","#78e9ca","#5cd4d3","#6193c8","#786dd2","#c184d7","#d264bd","#ff749a"],
+                barPercentage: 1.0
+            }]
+        },
+        options: {
+            indexAxis: 'x',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display:false}
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { beginAtZero: true }
+            }
+        }
+    })
+
+</script>

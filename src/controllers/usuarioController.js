@@ -56,8 +56,8 @@ function cadastrar(req, res) {
     }
 
     // Validação simples de tamanho (opcional, mas recomendado)
-    if (senha.length < 4) {
-        return res.status(400).send("A senha deve ter pelo menos 4 caracteres!");
+    if (senha.length < 8) {
+        return res.status(400).send("A senha deve ter pelo menos 8 caracteres!");
     }
 
     usuarioModel.cadastrar(nome, email, senha)

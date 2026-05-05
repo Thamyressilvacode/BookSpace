@@ -247,34 +247,36 @@ h3{
 }
 
 /*Footer*/
-.futter{
+.futter {
     margin-top: 7%;
+    padding: 20px 0;
 }
 
-.img_futter{
+.img_futter {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-
     background-color: #ff5396;
+    gap: 25px;
 }
 
-.img_github{
-    width: 3%;
-    margin-right: 5px;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-.img_linkedin{
-    width: 3%;
-    margin-left: 5px;
-    margin-top: 2%; 
-    margin-bottom: 2%;
+.img_github,
+.img_linkedin {
+    width: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
 }
 
-.texto_futter{
+.img_github:hover,
+.img_linkedin:hover {
+    transform: scale(1.15);
+}
+
+.texto_futter {
     text-align: center;
-    font-family: 'Julius sans one';
+    font-family: 'Julius Sans One', sans-serif;
     color: #94624c;
+    margin-top: 15px;
+    font-size: 1rem;
 }
