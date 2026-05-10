@@ -14,11 +14,12 @@
 <body>
     <header>
         <nav class="navbar">
-            <a href="../home.html" class="home_btn">Home</a>
-            <a href="../dashboard.html" class="dash_btn">Dashboard</a>
             <img src="../icons/4.png" alt="" class="logo_navbar">
+            <a href="../home_usuario.html" class="home_btn">Home</a>
+            <a href="../dashboard.html" class="dash_btn">Dashboard</a>
             <a href="../biblioteca.html" class="biblioteca_btn">Minha Biblioteca</a>
-            <img src="../icons/5.png" alt="" class="img_login" href="login.html">
+            <a href="../sorteador.html" class="sorteador_btn">Sorteador</a>
+            <img onclick="redirecionar()" src="../icons/11.png" alt="" class="img_login">
         </nav>
     </header>
 
@@ -85,6 +86,10 @@
 </html>
 
 <script>
+//funcao do botao de logout
+    function redirecionar(){
+        window.location = "home.html"
+    }
 
 // grafico de meta
 
