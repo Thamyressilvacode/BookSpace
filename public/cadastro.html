@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/cadastro.css">
+    <link rel="shortcut icon" href="../icons/icon_document.png" type="image/x-icon">
     <title>BookSpace</title>
 </head>
 <body>
@@ -59,12 +60,14 @@ function Cadastrar() {
     }
 
     // Enviando para o backend
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
+    fetch("/usuarios/cadastrar", {//ira buscar valores no endpoint nos usuarios
+        method: "POST", // O post serve para enviar para algum lugar 
+        // usado para formularios - metodo GET é para pegar algo do HEAD 
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
+        body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
+                            //agora vá para o arquivo routes usuario.js
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar

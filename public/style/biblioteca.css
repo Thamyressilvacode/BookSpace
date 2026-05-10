@@ -1,2 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Julius+Sans+One&display=swap');
 
+H1{
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-family: BAGEL FAT ONE;
+    font-size: 70px;
+    color: #94624c;
+}
+
+.titulo_review{
+    background-color: #ff5396;
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-family: JULIUS SANS ONE;
+    font-size: 20PX;
+    color: #fff9e8;
+}
+
+.pesquisar_inserir{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: center;
+}
+
+.pesquisar_ipt{
+    margin-left: 70px;
+    margin-top: 20px;
+
+    background-color: #fff9e8;
+    padding: 9px;
+
+    border-radius: 33px;
+    border: solid 2px #94624c ;
+}
+
+.inserir_btn{
+    margin-right: 50px;
+    margin-top: 20px;
+
+    background-color: #ffbd59;
+    padding: 11px;
+
+    font-family: JULIUS SANS ONE;
+    color: #fff9e8;
+
+    border-radius: 33px;
+    border:solid 0px
+}

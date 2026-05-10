@@ -111,12 +111,96 @@ body{
     margin-right: 8%;
 }
 
+/*bloco 3 -  input meta e classificaqcao*/
 
+.bloco_3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    background-color: #ffbd59;
+
+    margin-top: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
+
+    border-radius: 33px;
+
+    height: 300px;
+}
+
+.bloco_inserir{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff9e8;
+
+    border-radius: 33px;
+
+    margin-right: 10px;
+    height: 250px;
+    width: 300px;
+
+    font-family: Julius Sans One;
+    font-size:23px;
+    color: #94624c;
+
+    gap: 10px;
+}
+.input_meta{
+    background-color: #ff5396;
+
+    border: solid 0 #ff5396;
+    border-radius: 33px;
+
+    height: 50px;
+
+    font-family: Julius Sans One;
+    font-size: 15px;
+    text-align: center;
+    color: #fff9e8;
+}
+.bnt_meta{
+    width: 100px;
+    height: 30px;
+
+    background-color: #fff9e8;
+
+    border: solid 2px;
+    border-color: #ffbd59;
+    border-radius: 33px;
+
+    font-family: Julius Sans One;
+    color: #94624c;
+    font-size: 15px;
+}
+
+.bloco_classificacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff9e8;
+
+    border-radius: 33px;
+
+    height: 250px;
+    width: 300px;
+    margin-left: 10px;
+
+    font-family: Julius Sans One;
+    color: #94624c;
+    font-size: 30px;
+
+    gap: 10px;
+}
 
 /*Footer*/
 .futter {
-    margin-top: 7%;
+    margin-top: 2%;
     padding: 20px 0;
 }
 

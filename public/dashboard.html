@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="shortcut icon" href="../icons/icon_document.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BookSpace</title>
 </head>
@@ -56,63 +57,24 @@
         </div>
     </div>
 
-    <div>
-        <div>
-            Dias de leitura mês de dezembro
-            <div>
-                <div id="dia1"></div>
-                <div id="dia2"></div>
-                <div id="dia3"></div>
-                <div id="dia4"></div>
-                <div id="dia5"></div>
-                <div id="dia6"></div>
-                <div id="dia7"></div>
-                <div id="dia8"></div>
-                <div id="dia9"></div>
-                <div id="dia10"></div>
-                <div id="dia11"></div>
-                <div id="dia12"></div>
-                <div id="dia13"></div>
-                <div id="dia14"></div>
-                <div id="dia15"></div>
-                <div id="dia16"></div>
-                <div id="dia17"></div>
-                <div id="dia18"></div>
-                <div id="dia19"></div>
-                <div id="di20"></div>
-                <div id="dia21"></div>
-                <div id="dia22"></div>
-                <div id="dia23"></div>
-                <div id="dia24"></div>
-                <div id="dia25"></div>
-                <div id="dia26"></div>
-                <div id="dia27"></div>
-                <div id="dia28"></div>
-                <div id="dia29"></div>
-                <div id="dia30"></div>
-                <div id="dia31"></div>
-            </div>
-        </div>
-
-        <div>
-            <div>
+    <div class="bloco_3">
+            <div class="bloco_inserir">
                 Meta de leitura anual
-                <input type="text">
-                <button>inserir</button>
+                <input placeholder="Insira sua meta" class="input_meta" type="text">
+                <button class="bnt_meta">inserir</button>
             </div>
 
-            <div>Você é o TOP<br>
+            <div class="bloco_classificacao">Você é o TOP<br>
                 #2 leitores<br>
                 do BookSpace<br>
             </div>
-        </div>
     </div>
 
     <div class="futter">
         
         <div class="img_futter">
-            <a href="https://github.com/Thamyressilvacode"><img class="img_github" src="../public/icons/6.png" alt=""></a>
-            <a href="https://www.linkedin.com/in/thamyres-batista-0ab3b4216/"><img class="img_linkedin" src="../public/icons/7.png" alt=""></a>
+            <a href="https://github.com/Thamyressilvacode"><img class="img_github" src="../icons/6.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/thamyres-batista-0ab3b4216/"><img class="img_linkedin" src="../icons/7.png" alt=""></a>
         </div>
         
         <div class="texto_futter">
@@ -159,6 +121,7 @@
           data: [50, 50],
           backgroundColor: ['#ee3a86', '#fefcd0'],
           borderWidth: 0,
+          borderRadius: 10,
           hoverOffset: 20
         }]
       },
@@ -186,7 +149,9 @@
             datasets: [{
                 data: [20, 14, 7, 4,3,4],
                 backgroundColor: ["#ffbd59"],
-                barPercentage: 1.0
+                barPercentage: 1.0,
+                borderRadius: 15
+
             }]
         },
         options: {
@@ -213,7 +178,8 @@ let lidos = document.getElementById("grafico_lidos").getContext("2d")
             datasets: [{
                 data: [5,7,4,3,2,4,6,8,4,3,4,2],
                 backgroundColor: ["#ef737c","#ffbd59","#ffde59","#aac861","#77d268","#78e9ca","#5cd4d3","#6193c8","#786dd2","#c184d7","#d264bd","#ff749a"],
-                barPercentage: 1.0
+                barPercentage: 1.0,
+                borderRadius: 15
             }]
         },
         options: {
