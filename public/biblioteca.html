@@ -35,12 +35,105 @@
         </div>
     </div>
 
+    <!--LISTA DE LIVROS-->
+    
+</div>
+
+    <div class="lista_livros" id="lista_livros">
+        <!--os livros adicionados ficam aqui-->
+    </div>
+
+    <div id="modal_novo_livro" class="modal_review">  
+    <div class="modal_interno">
+        <h2 class="h2_modal">INSERIR NOVO LIVRO</h2>
+
+        <label>Título do Livro</label>
+        <input type="text" id="novo_titulo" placeholder="Ex: Amor Corrompido">
+
+        <label>Autor</label>
+        <input type="text" id="novo_autor" placeholder="Ex:Ana">
+
+        <label>Review</label>
+        <input type="text" class="nova_review" id="nova_review" placeholder="Insira sua review...">
+
+        <div class="bloco_nota_genero">
+            <label>Nota (0 a 10)</label>
+            <input type="number" id="novo_nota" min="0" max="10"value="" placeholder="0">
+
+            <label>Genero livro</label>
+            <input type="text" id="genero_livro" class="genero_livro" placeholder="Ex: Romance">
+        </div>
+
+        <div class="modal_btn">
+            <button class="btn_cancelar" onclick="fecharModal()">Cancelar</button>
+            <button class="btn_inserir" onclick="adicionarNovoLivro()">Inserir Livro</button>
+        </div>
+    </div>
+    </div>
 
 </body>
 </html>
 <script>
-    //funcao do botao de logout
+//FUNCAO LOGOUT NAV BAR
     function redirecionar(){
         window.location = "home.html"
     }
+
+//VARIAVEIS INSERIR LIVRO
+let btnInserir = document.querySelector('.inserir_btn');
+let listaLivros = document.getElementById('lista_livros');
+let modalNovoLivro = document.getElementById('modal_novo_livro');
+let modalReview = document.getElementById('modal_review');
+
+//ARMAZENA OS DADOS DA REVIEW
+
+// ABRE O MODAL DE INSERIR LIVRO
+btnInserir.addEventListener('click', () => {
+    modalNovoLivro.style.display = 'flex';
+});
+
+//FECHA O MODAL DE INSERIR LIVRO E LIMPOA OS CAMPOS PARA A PROXIMA REVIEW
+function fecharModal() {
+    modalNovoLivro.style.display = 'none';
+
+    document.getElementById('novo_titulo').value = '';
+    document.getElementById('novo_autor').value = '';
+    document.getElementById('nova_review').value = '';
+    document.getElementById('novo_nota').value = '';
+    document.getElementById('genero_livro').value = '';
+}
+
+// botao de adicionar livro dentro do modal
+function adicionarNovoLivro() {
+    let titulo = document.getElementById('novo_titulo').value;
+    let review = document.getElementById('nova_review').value;
+    let autor = document.getElementById('novo_autor').value;
+    let genero = document.getElementById('genero_livro').value;
+    let nota = document.getElementById('novo_nota').value;
+
+    //cria uma nova div daquele livro
+    let novoLivro = document.createElement('div');
+    novoLivro.className = 'book';
+
+    //define o conteudo da div
+    novoLivro.innerHTML = `
+        <span class="title">${titulo}</span>
+        <span class="nota">Nota: ${parseFloat(nota).toFixed(1)}</span>
+        <button onclick="btn_review()" class="btn_review">REVIEW</button>
+    `;
+
+    listaLivros.appendChild(novoLivro);
+
+    fecharModal()
+
+}
+
+
+
+
+// Função que adiciona o evento no botão REVIEW
+function btn_review(){
+        window.location = "tela_review.html"
+    }
+
 </script>

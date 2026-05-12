@@ -19,18 +19,17 @@ CREATE TABLE usuario (
 CREATE TABLE livros (
     idLivros INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
-    autor VARCHAR(100),
-    editora VARCHAR(100),
-    genero VARCHAR(45) NOT NULL
+    autor VARCHAR(100) NOT NULL,
+    genero VARCHAR(45) NOT NULL,
+    metaLivros INT NOT NULL,
+    paginasLidas INT NOT NULL,
+    nota INT CHECK(nota BETWEEN 0 AND 10),
+    review VHARCHAR(700)
 );
 
-CREATE TABLE reviews (
-    idreviews INT AUTO_INCREMENT PRIMARY KEY,
-    nota INT CHECK (nota BETWEEN 0 AND 10),
-    comentario TEXT,
-    fkUsuario INT,
-    fkLivro INT,
-    FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario),
-    FOREIGN KEY (fkLivro) REFERENCES livros(idLivros)
-);
+SELECT * FROM usuario;
 
+
+CREATE USER 'bookspace'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'bookspace'@'localhost';
+FLUSH PRIVILEGES;
