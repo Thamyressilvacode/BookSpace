@@ -8,7 +8,7 @@ h1{
 
     font-family: 'Bagel fat One';
     font-size: 600%;
-    color: #94624c;
+    color: #ffbd59;
 }
 
 h2{
@@ -45,7 +45,7 @@ h3{
     width: 100%;
     margin-top: 7%;
 
-    background-color: #ffbd59;
+    background-color: #94624c;
 }
 
 .texto_informativo{
@@ -71,11 +71,12 @@ h3{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 5%;
 
     font-family: 'julius sans one';
     font-size: 300%;
-    color: #94624c;
+    font-weight: 600;
+    color: #ffbd59;
 }
 
 .blocos_habitos{
@@ -105,6 +106,7 @@ h3{
     font-family: 'julius sans one';
     color: #94624c;
     font-size: 30px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -126,6 +128,7 @@ h3{
     font-family: 'julius sans one';
     color: #94624c;
     font-size: 30px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -147,6 +150,7 @@ h3{
     font-family: 'julius sans one';
     color: #94624c;
     font-size: 30px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -180,7 +184,7 @@ h3{
     
     
     font-family: 'julius sans one';
-    color: #94624c;
+    color: #ff5396;
     font-size: 40px;
 }
 
@@ -198,12 +202,13 @@ h3{
 
 .tela_bibliotecas{
     text-align: center;
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 .titulo_bibliotecas{
     font-family: 'julius sans one';
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: 400;
     color: #94624c;
 }
 
@@ -248,7 +253,7 @@ h3{
 
 /*Footer*/
 .futter {
-    margin-top: 7%;
+    margin-top: 3%;
     padding: 20px 0;
 }
 
