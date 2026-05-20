@@ -88,8 +88,6 @@ let listaLivros = document.getElementById('lista_livros');
 let modalNovoLivro = document.getElementById('modal_novo_livro');
 let modalReview = document.getElementById('modal_review');
 
-//ARMAZENA OS DADOS DA REVIEW
-
 // ABRE O MODAL DE INSERIR LIVRO
 btnInserir.addEventListener('click', () => {
     modalNovoLivro.style.display = 'flex';
@@ -125,14 +123,30 @@ function adicionarNovoLivro() {
         <button onclick="btn_review()" class="btn_review">REVIEW</button>
     `;
 
+    fetch("/review/salvarReview", {//ira buscar valores no endpoint nos usuarios
+        method: "POST", // O post serve para enviar para algum lugar 
+        // usado para formularios - metodo GET é para pegar algo do HEAD 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
+                            //agora vá para o arquivo routes usuario.js
+            tituloServer: titulo,
+            reviewServer: review,
+            autorServer: autor,
+            generoServer: genero,
+            notaServer: nota
+        })
+    })
+    .catch(function (erro) {
+        console.log(erro);
+    });
+
     listaLivros.appendChild(novoLivro);
 
     fecharModal()
 
 }
-
-
-
 
 // Função que adiciona o evento no botão REVIEW
 function btn_review(){
