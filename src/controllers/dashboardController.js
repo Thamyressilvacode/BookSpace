@@ -1,16 +1,15 @@
-var dashModel = require("../models/dashboardModel");
+var dashboardModel = require("../models/dashboardModel");
 
-function salvarMeta(req, res) {
+function btnInserirMeta(req, res) {
     var meta = req.body.metaServer;
-    
-
+    var idUsuario = req.params.idUsuario;
 
     // Validações básicas
     if (meta == undefined || meta == "") {
         return res.status(400).send("Sua meta está inválida!");
     } 
-    
-    dashboardModel.salvarMeta(meta)
+
+    dashboardModel.btnInserirMeta(meta, idUsuario)
         .then(function (resultado) {
             res.status(201).json({
                 mensagem: "meta cadastrada com sucesso!",
@@ -22,45 +21,41 @@ function salvarMeta(req, res) {
 
             // Tratamento de erro de review duplicado
             if (erro.code == "ER_DUP_ENTRY") {
-                return res.status(400).send("Esta meta já está cadastrada!");
+                return res.status(400).send("Este meta já está cadastrada!");
             }
 
             res.status(500).json(erro.sqlMessage);
         });
 }
 
-function atualizarMeta(req, res) {
-    var meta = req.body.metaServer;
+function carregarMeta(req, res){
+    var idUsuario = req.params.idUsuario;
 
-
-    // Validações básicas
-    if (meta == undefined || meta == "") {
-        return res.status(400).send("Sua meta está inválida!");
-    } 
-    
-    dashboardModel.atualizarMeta(meta)
+    dashboardModel.carregarMeta(idUsuario)
         .then(function (resultado) {
-            res.status(201).json({
-                mensagem: "meta atualizada com sucesso!",
-                resultado: resultado
-            });
+            res.status(200).json(resultado);
         })
         .catch(function (erro) {
             console.log(erro);
-
-            // Tratamento de erro de review duplicado
-            if (erro.code == "ER_DUP_ENTRY") {
-                return res.status(400).send("Esta meta já está cadastrada!");
-            }
-
             res.status(500).json(erro.sqlMessage);
         });
 }
 
+function carregarTotalPaginas(req, res){
+    var idUsuario = req.params.idUsuario;
 
-
+    dashboardModel.carregarTotalPaginas(idUsuario)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 module.exports = {
-    salvarMeta,
-    atualizarMeta
+    btnInserirMeta,
+    carregarMeta,
+    carregarTotalPaginas
 }

@@ -11,7 +11,7 @@
     <title>BookSpace</title>
 </head>
 
-<body>
+<body onload="carregarMetricas(), carregarTotalPaginas()">
     <header>
         <nav class="navbar">
             <img src="../icons/4.png" alt="" class="logo_navbar">
@@ -27,7 +27,7 @@
         <div class="bloco_inserir">
              Meta de leitura anual
             <input placeholder="Insira sua meta" class="input_meta" id="input_meta" type="text">
-            <button onclick="btnInserir()" class="bnt_meta">inserir</button>
+            <button onclick="InserirMeta()" class="bnt_meta">inserir</button>
         </div>
                 
         <div class="meta_leitura">
@@ -51,7 +51,7 @@
                 Páginas Lidas em <br>2026
             </div>
 
-            <div class="metrica_paginas_lidas">9.576</div>
+            <div id="metrica_paginas_lidas" class="metrica_paginas_lidas"></div>
         </div>
     </div>
 
@@ -92,43 +92,53 @@
         window.location = "home.html"
     }
 
-    function btnInserir(){
-        let meta = Number(input_meta.value)
-        let mostrarMeta = meta
+// inserir meta no banco
+    function InserirMeta(){
+        let meta = Number(input_meta.value);
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-        if(meta === 0){
-            fetch("/meta/salvarMeta", {//ira buscar valores no endpoint nos usuarios
-            method: "POST", // O post serve para enviar para algum lugar 
-            // usado para formularios - metodo GET é para pegar algo do HEAD 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
-                                //agora vá para o arquivo routes usuario.js
-                metaServer: meta,
+
+        fetch(`/dashboard/btnInserirMeta/${idUsuario}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                metaServer: meta
             })
-            })
-            .catch(function (erro) {
+        })
+        .catch(function (erro) {
             console.log(erro);
-            });
-        }else{
-            fetch("/meta/atualizarMeta", {//ira buscar valores no endpoint nos usuarios
-            method: "POST", // O post serve para enviar para algum lugar 
-            // usado para formularios - metodo GET é para pegar algo do HEAD 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
-                                //agora vá para o arquivo routes usuario.js
-                metaServer: meta,
-            })
-            })
-            .catch(function (erro) {
-            console.log(erro);
-            });
-            metrica_leitura.innerHTML = meta
-        }
+        });
     }
+    function carregarMetricas(){
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        fetch(`/dashboard/carregarMeta/${idUsuario}`)
+        .then((res) => res.json())
+        .then((dados) => {
+            console.log(dados);
+            metrica_leitura.innerHTML = `
+                Meta: ${dados[0].metaLivros} livros
+            `;
+        })
+        .catch((erro) => {
+            console.log("Erro: ", erro);
+        });
+    }
+    
+    function carregarTotalPaginas(){
+    let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+    fetch(`/dashboard/carregarTotalPaginas/${idUsuario}`)
+    .then((res) => res.json())
+    .then((dados) => {
+        console.log(dados);
+        metrica_paginas_lidas.innerHTML = `${dados[0].totalPaginas} páginas`;
+    })
+    .catch((erro) => {
+        console.log("Erro: ", erro);
+    });
+}
+
 
 // grafico de meta
 

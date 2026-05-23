@@ -12,6 +12,4 @@ router.get("/carregarLivro/:idUsuario", function (req, res) {
     bibliotecaController.carregarLivro(req, res);
 })
 
-
-
 module.exports = router;

@@ -1,27 +1,31 @@
 var database = require("../database/config")
 
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function salvarMeta(meta) {
-    
+function btnInserirMeta(meta, idUsuario) { // ← receber aqui
     var instrucaoSql = `
-        INSERT INTO livros(metaLivros) VALUES
-        (${meta});
+        INSERT INTO meta_leitura(fk_usuario, metaLivros) VALUES(${idUsuario}, ${meta});`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function carregarMeta(idUsuario){
+    var instrucaoSql = `
+        SELECT metaLivros FROM meta_leitura WHERE fk_usuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function atualizarMeta(meta) {
-    
-    var instrucaoSql = `
-        UPDATE livros SET metaLivros = ${meta};
+function carregarTotalPaginas(idUsuario){
+     var instrucaoSql = `
+        SELECT SUM(paginas) AS totalPaginas FROM livros WHERE fk_usuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    salvarMeta,
-    atualizarMeta
+    btnInserirMeta,
+    carregarMeta,
+    carregarTotalPaginas
 };

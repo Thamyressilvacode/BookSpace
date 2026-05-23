@@ -1,50 +1,63 @@
 CREATE DATABASE IF NOT EXISTS BookSpace;
 USE BookSpace;
 
--- ====================== TABELA DE USUÁRIOS ======================
 CREATE TABLE usuario (
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(45) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL,        -- aumentado + hash depois
-    dataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+    senha VARCHAR(20) NOT NULL
 );
 
--- ====================== META DE LEITURA ANUAL ======================
 CREATE TABLE meta_leitura (
     idMeta INT AUTO_INCREMENT PRIMARY KEY,
     fk_usuario INT NOT NULL,
-    metaLivros INT NOT NULL,           -- exemplo: 52 livros por ano
-    ano INT NOT NULL,
-    dataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    metaLivros INT NOT NULL,
     
-    UNIQUE KEY uk_usuario_ano (fk_usuario, ano),   -- apenas 1 meta por ano
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
 
--- ====================== TABELA DE LIVROS / LEITURA ======================
 CREATE TABLE livros (
     idLivros INT AUTO_INCREMENT PRIMARY KEY,
     fk_usuario INT NOT NULL,
     titulo VARCHAR(150) NOT NULL,
     autor VARCHAR(100) NOT NULL,
     genero VARCHAR(50),
-    paginasTotal INT,
-    paginasLidas INT DEFAULT 0,
+    paginas INT DEFAULT 0,
     nota INT CHECK (nota BETWEEN 0 AND 10),
     review VARCHAR(700),
     dataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    dataConclusao DATE NULL,
     
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
+INSERT INTO usuario VALUES
+(1,'Thamyres','thamyres@gmail.com','44396851Th');
 
--- ====================== USUÁRIO DO BANCO ======================
+INSERT INTO livros(fk_usuario,titulo,autor,genero,paginas,nota,review) VALUES
+(1,'Harry Potter e o prizioneiro as askaban','JK Rolling', 'Fantasia',150,9,'prizioneiro de azkaban');
+
+INSERT INTO meta_leitura(fk_usuario,metaLivros) VALUES
+(1,50);
+
 CREATE USER IF NOT EXISTS 'bookspace'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON BookSpace.* TO 'bookspace'@'localhost';
 FLUSH PRIVILEGES;
 
--- ====================== TESTES ======================
+-- testes
+
+
 SELECT * FROM usuario;
 SELECT * FROM meta_leitura;
-SELECT * FROM livros;
+SELECT * FROM livros;	
+
+SELECT SUM(paginas) FROM livros;
+
+SELECT idLivros,fk_usuario, titulo,nota FROM livros WHERE fk_usuario = 1; 
+UPDATE livros SET titulo = '	Harry Potter e o Prisioneiro de Azkaban'  WHERE idLivros = 1; 
+ 
+	
+
+SELECT titulo,review,nota FROM livros WHERE idLivros = 1;
+
+DELETE FROM meta_leitura WHERE idMeta = 3;
+
+DROP TABLE meta_leitura;

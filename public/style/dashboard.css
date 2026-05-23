@@ -84,7 +84,7 @@ body{
 
 .metrica_leitura{
     margin-top: 10px;
-    font-size: 45px;
+    font-size: 30px;
 }
 
 .grafico_dunut{
@@ -96,12 +96,15 @@ body{
 /* Bloco paginas lidas*/
 
 .paginas_lidas{
-    display: flex;
+    display: flex;  
     align-items: center;
-    justify-content: space-between;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
     
     width: 600px;
     height: 170px;
+    gap: 10px;
 
     border-radius: 33px;
     background-color: #ffbd59;
@@ -112,15 +115,12 @@ body{
 }
 
 .texto1_paginas_lidas{
-    text-align: center;
-    padding: 20px;
-        font-size: 35px;
+    font-size: 30px;
 }
 
 .metrica_paginas_lidas{
-    text-align: center;
-    padding: 20px;
-    font-size: 60px;
+    font-size: 30px;
+    color: #ff307f;
 }
 
 
@@ -195,39 +195,4 @@ body{
     font-size: 30px;
 
     gap: 10px;
-}
-
-/*Footer*/
-.futter {
-    margin-top: 2%;
-    padding: 20px 0;
-}
-
-.img_futter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff5396;
-    gap: 25px;
-}
-
-.img_github,
-.img_linkedin {
-    width: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-
-.img_github:hover,
-.img_linkedin:hover {
-    transform: scale(1.15);
-}
-
-.texto_futter {
-    text-align: center;
-    font-family: 'Julius Sans One', sans-serif;
-    color: #94624c;
-    margin-top: 15px;
-    font-size: 1rem;
 }
