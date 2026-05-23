@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BookSpace</title>
 </head>
-<body>
+<body onload="carregarLivro()">
     <header>
         <nav class="navbar">
             <img src="../icons/4.png" alt="" class="logo_navbar">
@@ -25,23 +25,21 @@
 
     <div class="titulo_review">REVIEWS</div>
     
-    <div class="pesquisar_inserir">
-        <div class="pesquisar">
-            <input class="pesquisar_ipt" type="text" placeholder="PESQUISE SEU LIVRO">
-        </div>
-
+    <div class="inserir">
         <div class="inserir">
             <button class="inserir_btn">+inserir novo livro</button>
         </div>
     </div>
 
-    <!--LISTA DE LIVROS-->
     
+<div class="titulo_visualizacao">
+        <div>titulo</div>
+        <div>Nota</div>
 </div>
 
-    <div class="lista_livros" id="lista_livros">
-        <!--os livros adicionados ficam aqui-->
-    </div>
+</div>
+
+    <div class="lista_livros" id="lista_livros"></div>
 
     <div id="modal_novo_livro" class="modal_review">  
     <div class="modal_interno">
@@ -74,6 +72,18 @@
     </div>
     </div>
 
+    <div class="futter">
+        
+        <div class="img_futter">
+            <a href="https://github.com/Thamyressilvacode"><img class="img_github" src="../icons/6.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/thamyres-batista-0ab3b4216/"><img class="img_linkedin" src="../icons/7.png" alt=""></a>
+        </div>
+        
+        <div class="texto_futter">
+            Projeto Desenvolvido Para Fins Educacionais por  Thamyres Batista
+        </div>
+    </div>
+
 </body>
 </html>
 <script>
@@ -104,53 +114,69 @@ function fecharModal() {
     document.getElementById('genero_livro').value = '';
 }
 
-// botao de adicionar livro dentro do modal
+// botao de adicionar livro no banco
 function adicionarNovoLivro() {
-    let titulo = document.getElementById('novo_titulo').value;
-    let review = document.getElementById('nova_review').value;
-    let autor = document.getElementById('novo_autor').value;
-    let genero = document.getElementById('genero_livro').value;
-    let nota = document.getElementById('novo_nota').value;
+    let titulo = novo_titulo.value;
+    let review = nova_review.value;
+    let autor = novo_autor.value;
+    let genero = genero_livro.value;
+    let nota = Number(novo_nota.value);
+    let paginas = Number(quantidade_paginas.value);
+    let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-    //cria uma nova div daquele livro
-    let novoLivro = document.createElement('div');
-    novoLivro.className = 'book';
-
-    //define o conteudo da div
-    novoLivro.innerHTML = `
-        <span class="title">${titulo}</span>
-        <span class="nota">Nota: ${parseFloat(nota).toFixed(1)}</span>
-        <button onclick="btn_review()" class="btn_review">REVIEW</button>
-    `;
-
-    fetch("/review/salvarReview", {//ira buscar valores no endpoint nos usuarios
-        method: "POST", // O post serve para enviar para algum lugar 
-        // usado para formularios - metodo GET é para pegar algo do HEAD 
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
-                            //agora vá para o arquivo routes usuario.js
+    fetch(`/biblioteca/salvarReview/${idUsuario}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
             tituloServer: titulo,
-            reviewServer: review,
             autorServer: autor,
             generoServer: genero,
-            notaServer: nota
+            paginasServer: paginas,
+            notaServer: nota,
+            reviewServer: review,
         })
+    })
+    .then(() => {
+        listaLivros.innerHTML = ''; // limpa a lista
+        carregarLivro();            // recarrega com o novo livro
+        fecharModal();
     })
     .catch(function (erro) {
         console.log(erro);
     });
+}
 
-    listaLivros.appendChild(novoLivro);
+function carregarLivro(){
+    let idUsuario = sessionStorage.getItem("ID_USUARIO")
 
-    fecharModal()
 
+    fetch(`/biblioteca/carregarLivro/${idUsuario}`)
+    .then((res) => res.json())
+    .then((dados) => {
+
+        console.log(dados)
+        for(let i = 0; i < dados.length; i++){
+            let idLivros = Number(dados[i].idLivros)
+            let novoBook = document.createElement('div');
+            novoBook.className = 'novoBook';
+
+            novoBook.innerHTML = `
+                <div class="title">${dados[i].titulo}</div>
+                <div class="nota">Nota: ${parseFloat(dados[i].nota).toFixed(1)}</div>
+                <button onclick="btn_review(${idLivros})" class="btn_review">REVIEW</button>
+            `;
+
+            listaLivros.appendChild(novoBook);
+        }
+    })
+    .catch((erro) => {
+      console.log("Erro: ", erro);
+    });
 }
 
 // Função que adiciona o evento no botão REVIEW
-function btn_review(){
+function btn_review(idLivro){
+    sessionStorage.ID_LIVRO = idLivro 
         window.location = "tela_review.html"
     }
-
 </script>

@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BookSpace</title>
 </head>
-<body>
+<body onload="carregarReview()">
     <header>
         <nav class="navbar">
             <img src="../icons/4.png" alt="" class="logo_navbar">
@@ -22,10 +22,7 @@
     </header>
     
 
-    <div class="bloco_review">
-       <h1>Harry Potter e a pedra filosofal</h1>
-       <div class="texto_review">"Não vale a pena viver sonhando e não viver"🐍<br>
-Harry Potter é um garoto órfão que vive com seus tios horríveis, os Dursleys. Ele então recebe uma carta da escola de Magia e bruxaria: Hogwarts. Dizendo que ele foi convidado para estudar lá. Harry faz amigos lá, Rony e Hermione. Porém, coisas estranhas começam acontecer, então, os três decidem investigar. O que será que eles vão descobrir? Tu irá saber de tudo isso quando começar essa saga de livros!!! Eu realmente amo Harry Potter! Conheci Harry Potter com 5 anos de idade, e desde então fiquei viciada nos filmes! Eu amo taaaaanto, q tenho 4 cadernos do Harry Potter, um pôster do Sirius Black, a varinha do Harry Potter, os DVDs dos filmes do Harry Potter, fantasia da roupa da grifinória, meias da grifinória e uma camiseta da sonserina. O ruim de já ter assistido os filmes, é que eu já sei o que acontece nos livros. Então eu não consigo ficar surpresa quando algo acontece. Os filmes estragaram os personagens! O Rony dos livros é beeeeem mais legal e engraçado. Eu odiava ele nos filmes, mas agora eu amo ele nos livros! Me identifiquei HORRORES com ele KKKKKKKKKKKKKK A Hermione é beeeem mais inteligente do que é mostrado nos filmes. Ela conseguiu resolver um enigma MUITO difícil em apenas 1 MINUTO! Mas confesso que ela me irritou bastante nesse livro. Ela não deixava o Rony e o Harry fazerem NADA! O Harry dos livros é suuuuuuuuuper diferente do que o Harry dos filmes. Enquanto o Harry dos filmes é quietinho e na dele, o Harry dos livros fala tudo que pensa, é o capeta em pessoa. Ele falava o que pensava, até mesmo para um professor. Ainda acho que ele e o Percy Jackson seriam ótimos amigos (#nãocriamosrivalidades) A única coisa que eu não gostei, é que as letras do livro são MINÚSCULAS! Aí, você demora para chegar no capítulo seguinte, e não te prende direito na leitura. Mas tirando isso, eu gostei muito do livro! Mas não considero ele nem o melhor filme e muito menos o melhor livro. (não liguem q a resenha está simples, não tinha muito o que falar)</div> 
+    <div id="bloco_review" class="bloco_review"> 
     </div>
 
     <div class="futter">
@@ -39,5 +36,33 @@ Harry Potter é um garoto órfão que vive com seus tios horríveis, os Dursleys
             Projeto Desenvolvido Para Fins Educacionais por  Thamyres Batista
         </div>
     </div>
+
+
 </body>
 </html>
+<script>
+    function carregarReview(){
+    let idLivro = sessionStorage.getItem("ID_LIVRO")
+
+
+    fetch(`/review/carregarReview/${idLivro}`)
+    .then((res) => res.json())
+    .then((dados) => {
+
+        console.log(dados)
+        for(let i = 0; i < dados.length; i++){
+            let idLivros = Number(dados[i].idLivros)
+
+            bloco_review.innerHTML = `
+                <h1>Review</h1>
+                <div class="titulo_review">${dados[i].titulo}</div>
+                <div class="nota">Nota: ${parseFloat(dados[i].nota).toFixed(1)}</div>
+                <div class="texto_review">${dados[i].review}</div>
+            `;
+        }
+    })
+    .catch((erro) => {
+      console.log("Erro: ", erro);
+    });
+}
+</script>

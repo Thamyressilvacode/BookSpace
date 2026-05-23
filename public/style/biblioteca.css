@@ -3,10 +3,10 @@
 H1{
     text-align: center;
 
-    margin-top: 20px;
+    margin-top: 10px;
 
     font-family: BAGEL FAT ONE;
-    font-size: 70px;
+    font-size: 80px;
     color: #94624c;
 }
 
@@ -16,36 +16,24 @@ H1{
     background-color: #ff5396;
     text-align: center;
 
-    margin-top: 20px;
+    margin-top: 10px;
 
     font-family: JULIUS SANS ONE;
     font-size: 20PX;
     color: #fff9e8;
 }
 
-.pesquisar_inserir{
+.inserir{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: center;
 }
-
-.pesquisar_ipt{
-    margin-left: 70px;
-    margin-top: 20px;
-
-    background-color: #fff9e8;
-    padding: 9px;
-
-    border-radius: 33px;
-    border: solid 2px #94624c ;
-}
-
 
 .titulo_visualizacao{
     display: flex;
     justify-content: space-between;
-    margin: 30px 60px 0px 60px ;
+    margin: 20px 400px 0px 60px ;
 
     font-family: JULIUS SANS ONE;
     font-size: 30px;
@@ -53,34 +41,33 @@ H1{
 
 }
 
-
-.book{
+/*div que aparece os livros*/
+.novoBook {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    text-align: center;
     font-size: 20px;
     font-family: DM sans;
 
     border: solid 2px #ff1493;
     border-radius: 33px;
 
-    margin: 10px 60px 20px 60px ;
+    margin: 10px 60px 10px 60px;
+    padding: 10px 20px;
 }
 
-.titulo_livro{
-    margin-left: 40px;
-}
-.nota_livro{
-    margin-right: 650px;
+.title {
+    flex: 1;
+    text-align: left;
 }
 
-.title{
-    margin: 10px 0px 10px 20px;
+.nota {
+    flex: 0 0 445px;
+    text-align: center;
 }
-.btn_review{
-    margin: 10px 10px 10px 10px;
+
+.btn_review {
+    flex: 0 0 auto;
     padding: 12px 40px;
     border: none;
     background-color: #ff1493;
@@ -93,14 +80,13 @@ H1{
 }
 
 .inserir_btn{
-    margin-right: 70px;
     margin-top: 20px;
-
     background-color: #ffbd59;
-    padding: 11px;
+    padding: 15px;
 
     font-family: JULIUS SANS ONE;
     color: #fff9e8;
+    font-size: 20px;
 
     border-radius: 33px;
     border:solid 0px
@@ -188,32 +174,5 @@ H1{
 
 /*inserir nova review*/
 .nova_review{
-    height: 200px;
-}
-
-/*Visualização de review*/
-
-.modal_review_titulo{
-    font-family: bagel fat one;
-    text-align: center;
-    color: #ff1493;
-    font-size: 35px;
-    margin-bottom: 10px ;
-}
-
-.review_titulo{
-    border: solid 2px #ff1493;
-    border-radius: 33px;
-    height: 20px;
-}
-
-.review_autor{
-    border: solid 2px #ff1493;
-    border-radius: 33px;
-    height: 20px;
-}
-.review_texto{
-    border: solid 2px #ff1493;
-    border-radius: 33px;
     height: 200px;
 }

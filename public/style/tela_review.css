@@ -9,6 +9,7 @@
     display: block;
     align-items: center;
     justify-content: center;
+    text-align: center;
     padding: 20px;
 
     border: solid 3px #e74e8e;
@@ -22,47 +23,34 @@ h1{
     font-family: bagel fat one;
     font-size: 60px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: px;
+}
+
+.titulo_review{
+    font-family: 'julius sans one';
+    font-size: 250%;
+    font-weight: 600;
+    color: #ffbd59;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nota{
+    font-family: 'julius sans one';
+    font-size: 200%;
+    font-weight: 600;
+    color: #c57958;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .texto_review{
     display: flex;
     text-align: center;
     justify-content: center;
-    margin: 50px 50px 50px 50px;
-    font-size: 20px;
-}
-
-/*Footer*/
-.futter {
-    margin-top: 2%;
-}
-
-.img_futter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff5396;
-    gap: 25px;
-}
-
-.img_github,
-.img_linkedin {
-    width: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-
-.img_github:hover,
-.img_linkedin:hover {
-    transform: scale(1.15);
-}
-
-.texto_futter {
-    text-align: center;
-    font-family: 'Julius Sans One', sans-serif;
+    margin:     20px 50px 50px 50px;
+    font-size: 22px;
+    font-family: DM sans;
     color: #94624c;
-    margin-top: 15px;
-    font-size: 1rem;
 }
+

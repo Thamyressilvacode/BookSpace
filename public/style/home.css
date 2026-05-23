@@ -251,37 +251,3 @@ h3{
     color: #94624c;
 }
 
-/*Footer*/
-.futter {
-    margin-top: 3%;
-    padding: 20px 0;
-}
-
-.img_futter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff5396;
-    gap: 25px;
-}
-
-.img_github,
-.img_linkedin {
-    width: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-
-.img_github:hover,
-.img_linkedin:hover {
-    transform: scale(1.15);
-}
-
-.texto_futter {
-    text-align: center;
-    font-family: 'Julius Sans One', sans-serif;
-    color: #94624c;
-    margin-top: 15px;
-    font-size: 1rem;
-}
