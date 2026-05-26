@@ -2,8 +2,8 @@ var database = require("../database/config")
 
 
 function btnInserirMeta(meta, idUsuario) { // ← receber aqui
-    var instrucaoSql = `
-        INSERT INTO meta_leitura(fk_usuario, metaLivros) VALUES(${idUsuario}, ${meta});`;
+        var instrucaoSql = `
+        UPDATE meta_leitura SET metaLivros = ${meta}  WHERE fk_usuario = ${idUsuario}; ;`
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

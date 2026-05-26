@@ -139,7 +139,13 @@ body{
     border-radius: 33px;
 }
 
+.titulo_grafico{
+    font-size: 20px;
+    font-family: JULIUS SANS ONE;
+}
+
 .grafico_barras1{
+    text-align: center;
     width:35%;
     height: 350px;
     margin-top: 2%;
@@ -149,6 +155,7 @@ body{
 }
 
 .grafico_barras2{
+    text-align: center;
     width: 35%;
     height: 350px;
     margin-left: 8%;

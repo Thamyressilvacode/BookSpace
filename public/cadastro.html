@@ -47,6 +47,7 @@ function Cadastrar() {
     var emailVar = emailCadastro_ipt.value;
     var senhaVar = senhaCadastro_ipt.value;
     var confirmacaoSenhaVar = confimacaoSenhaCadastro_ipt.value;
+    let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
     // Validação básica
     if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {

@@ -11,14 +11,13 @@
     <title>BookSpace</title>
 </head>
 
-<body onload="carregarMetricas(), carregarTotalPaginas()">
+<body onload=" InserirMeta(),carregarMetricas(), carregarTotalPaginas()">
     <header>
         <nav class="navbar">
             <img src="../icons/4.png" alt="" class="logo_navbar">
             <a href="../home_usuario.html" class="home_btn">Home</a>
             <a href="../dashboard.html" class="dash_btn">Dashboard</a>
             <a href="../biblioteca.html" class="biblioteca_btn">Minha Biblioteca</a>
-            <a href="../sorteador.html" class="sorteador_btn">Sorteador</a>
             <img onclick="redirecionar()" src="../icons/11.png" alt="" class="img_login">
         </nav>
     </header>
@@ -57,10 +56,12 @@
 
     <div class="bloco_2">
         <div class="grafico_barras1">
+            <div class="titulo_grafico">Quantidade de genêros lidos anualmente</div>
             <canvas id="grafico_generos"></canvas>
         </div>
 
         <div class="grafico_barras2">
+            <div class="titulo_grafico">Quantidade de livros lidos por mês</div>
             <canvas id="grafico_lidos"></canvas>
         </div>
     </div>
@@ -112,10 +113,11 @@
     function carregarMetricas(){
         let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-        fetch(`/dashboard/carregarMeta/${idUsuario}`)
-        .then((res) => res.json())
+        fetch(`/dashboard/carregarMeta/${idUsuario}`, {
+            method: "GET",
+    })
+      .then((res) => res.json())
         .then((dados) => {
-            console.log(dados);
             metrica_leitura.innerHTML = `
                 Meta: ${dados[0].metaLivros} livros
             `;
@@ -128,7 +130,9 @@
     function carregarTotalPaginas(){
     let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-    fetch(`/dashboard/carregarTotalPaginas/${idUsuario}`)
+    fetch(`/dashboard/carregarTotalPaginas/${idUsuario}`,{
+            method: "GET",
+    })
     .then((res) => res.json())
     .then((dados) => {
         console.log(dados);
@@ -162,8 +166,7 @@
         const centerX = width / 2;
         const centerY = height / 2 + 5;
         
-        metaCtx.fillText(porcentagem + '%', centerX, centerY);
-        metaCtx.restore();
+        metaCtx.fillText(porcentagem + '%', centerX, centerY); // mostra a porcentagem do grafico dunut
       }
     };
 

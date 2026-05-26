@@ -99,7 +99,7 @@ H1{
     text-align: center;
     color: #ff1493;
     font-size: 35px;
-    margin-bottom: 10px ;
+    margin-bottom: 30px ;
 }
 
 .modal_review {
@@ -119,8 +119,8 @@ H1{
     border-radius: 15px;
     width: 100%;
     max-width: 650px;
-    min-height: 400px;
-    padding: 50px 50px;
+    min-height: 350px;
+    padding: 20px 20px;
 
 }
 
@@ -175,4 +175,7 @@ H1{
 /*inserir nova review*/
 .nova_review{
     height: 200px;
+    width: 100%;
+    border: 2px solid #ff1493;
+    border-radius: 8px;
 }
