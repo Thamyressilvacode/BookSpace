@@ -16,4 +16,16 @@ router.get("/carregarTotalPaginas/:idUsuario", function (req, res) {
     dashboardController.carregarTotalPaginas(req, res);
 });
 
+router.get("/carregarDadosGrafico/:idUsuario", function (req, res) {
+    dashboardController.carregarDadosGrafico(req, res);
+});
+
+router.get("/carregarGeneros/:idUsuario", function (req, res) {
+    dashboardController.carregarGeneros(req, res);
+});
+
+router.get("/carregarLivrosPorMes/:idUsuario", function (req, res) {
+    dashboardController.carregarLivrosPorMes(req, res);
+});
+
 module.exports = router;

@@ -54,8 +54,49 @@ function carregarTotalPaginas(req, res){
         });
 }
 
+function carregarDadosGrafico(req, res){
+    var idUsuario = req.params.idUsuario;
+
+    dashboardModel.carregarDadosGrafico(idUsuario)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function carregarGeneros(req, res){
+    var idUsuario = req.params.idUsuario;
+
+    dashboardModel.carregarGeneros(idUsuario)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function carregarLivrosPorMes(req, res){
+    var idUsuario = req.params.idUsuario;
+
+    dashboardModel.carregarLivrosPorMes(idUsuario)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 module.exports = {
     btnInserirMeta,
     carregarMeta,
-    carregarTotalPaginas
+    carregarTotalPaginas,
+    carregarDadosGrafico,
+    carregarGeneros,
+    carregarLivrosPorMes
 }

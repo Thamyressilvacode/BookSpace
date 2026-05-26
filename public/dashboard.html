@@ -11,7 +11,7 @@
     <title>BookSpace</title>
 </head>
 
-<body onload=" InserirMeta(),carregarMetricas(), carregarTotalPaginas()">
+<body onload=" InserirMeta(),carregarMetricas(), carregarTotalPaginas(),carregarGraficoMeta(), carregarGraficoGeneros(), carregarGraficoLidos()">
     <header>
         <nav class="navbar">
             <img src="../icons/4.png" alt="" class="logo_navbar">
@@ -66,13 +66,6 @@
         </div>
     </div>
 
-    <div class="bloco_3">
-            <div class="bloco_classificacao">Você é o TOP<br>
-                #2 leitores<br>
-                do BookSpace<br>
-            </div>
-    </div>
-
     <div class="futter">
         
         <div class="img_futter">
@@ -93,147 +86,206 @@
         window.location = "home.html"
     }
 
-// inserir meta no banco
+// inserir meta no BD
     function InserirMeta(){
-        let meta = Number(input_meta.value);
-        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+    let meta = Number(input_meta.value);
+    let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-
-        fetch(`/dashboard/btnInserirMeta/${idUsuario}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                metaServer: meta
-            })
+    fetch(`/dashboard/btnInserirMeta/${idUsuario}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            metaServer: meta
         })
-        .catch(function (erro) {
-            console.log(erro);
-        });
-    }
-    function carregarMetricas(){
-        let idUsuario = sessionStorage.getItem("ID_USUARIO");
-
-        fetch(`/dashboard/carregarMeta/${idUsuario}`, {
-            method: "GET",
     })
-      .then((res) => res.json())
-        .then((dados) => {
-            metrica_leitura.innerHTML = `
-                Meta: ${dados[0].metaLivros} livros
-            `;
-        })
-        .catch((erro) => {
-            console.log("Erro: ", erro);
+    .then(function(response){
+        response.json().then(function(dados){
+            console.log(dados);
         });
-    }
+    })
+    .catch(function(erro){
+        console.log(erro);
+    });
+}
+
+//  carrega meta trazida do BD
+    function carregarMetricas(){
+    let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+    fetch(`/dashboard/carregarMeta/${idUsuario}`,{
+        method:"GET"
+    })
+    .then(function(response){
+        response.json().then(function(dados){
+            console.log(dados);
+            document.getElementById('metrica_leitura').innerHTML = `Meta: ${dados[0].metaLivros} livros`;
+        });
+    })
+    .catch(function(erro){
+        console.log(erro);
+    });
+}
     
-    function carregarTotalPaginas(){
+// carrega o total de páginas trazidas do BD
+   function carregarTotalPaginas(){
     let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
     fetch(`/dashboard/carregarTotalPaginas/${idUsuario}`,{
-            method: "GET",
+            method:"GET"
     })
-    .then((res) => res.json())
-    .then((dados) => {
-        console.log(dados);
-        metrica_paginas_lidas.innerHTML = `${dados[0].totalPaginas} páginas`;
+    .then(function(response){
+        response.json().then(function(dados){
+            console.log(dados);
+            document.getElementById('metrica_paginas_lidas').innerHTML = `${dados[0].totalPaginas} páginas`;
+        });
     })
-    .catch((erro) => {
-        console.log("Erro: ", erro);
+    .catch(function(erro){
+        console.log(erro);
     });
-}
+    }
 
 
 // grafico de meta
 
-    const meta = document.getElementById('grafico_meta');
+    let centerTextPlugin = {
+        id: 'centerText',
+        beforeDraw: function(chart) {
+            let { ctx: metaCtx, chartArea: { width, height } } = chart;
+            
+            let lidos = chart.data.datasets[0].data[0];
+            let total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+            let porcentagem = Math.round((lidos / total) * 100);
 
-    const centerTextPlugin = {
-      id: 'centerText',
-      beforeDraw: function(chart) {
-        const { ctx: metaCtx, chartArea: { width, height } } = chart;
-        
-        const lidos = chart.data.datasets[0].data[0];
-        const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-        const porcentagem = Math.round((lidos / total) * 100);
-
-        metaCtx.save();
-        metaCtx.font = 'bold 30px Julius Sans One';
-        metaCtx.textAlign = 'center';
-        metaCtx.textBaseline = 'middle';
-        metaCtx.fillStyle = '#fff9e8';
-        
-        const centerX = width / 2;
-        const centerY = height / 2 + 5;
-        
-        metaCtx.fillText(porcentagem + '%', centerX, centerY); // mostra a porcentagem do grafico dunut
-      }
+            metaCtx.save();
+            metaCtx.font = 'bold 30px Julius Sans One';
+            metaCtx.textAlign = 'center';
+            metaCtx.textBaseline = 'middle';
+            metaCtx.fillStyle = '#ff5396';
+            
+            let centerX = width / 2;
+            let centerY = height / 2 + 5;
+            
+            metaCtx.fillText(porcentagem + '%', centerX, centerY);
+            metaCtx.restore();
+        }
     };
 
-    new Chart(meta, {
-      type: 'doughnut',
-      data: {
-        labels: ['Livros Lidos', 'Livros Não Lidos'],
-        datasets: [{
-          data: [50, 50],
-          backgroundColor: ['#ee3a86', '#fefcd0'],
-          borderWidth: 0,
-          borderRadius: 10,
-          hoverOffset: 20
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        cutout: '70%',
-        
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      } ,
-      plugins: [centerTextPlugin]
+    let meta = grafico_meta
+
+    let graficoMeta = new Chart(meta, {
+        type: 'doughnut',
+        data: {
+            labels: ['Livros Lidos', 'Livros Não Lidos'],
+            datasets: [{
+                data: [0, 100],
+                backgroundColor: ['#ee3a86', '#fefcd0'],
+                borderWidth: 0,
+                borderRadius: 10,
+                hoverOffset: 20
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '70%',
+            plugins: { legend: { display: false } }
+        },
+        plugins: [centerTextPlugin]
     });
+
+    // carrega os dados no gráfico
+    function carregarGraficoMeta(){
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        fetch(`/dashboard/carregarDadosGrafico/${idUsuario}`,{
+            method:"GET"
+        })
+        .then(function(response){
+            response.json().then(function(dados){
+                console.log(dados);
+                let livrosLidos = dados[0].livrosLidos;
+                let metaLivros = dados[0].metaLivros;
+                let livrosFaltando = metaLivros - livrosLidos;
+
+                graficoMeta.data.datasets[0].data = [livrosLidos, livrosFaltando];
+                graficoMeta.update();
+            });
+        })
+        .catch(function(erro){
+            console.log(erro);
+        });
+    }
+
 
 //grafico generos
 
-    let ctxBarra = document.getElementById("grafico_generos").getContext("2d")
-    new Chart(ctxBarra, {
+    const ctxBarra = grafico_generos
+
+    let graficoGeneros = new Chart(ctxBarra, {
         type: "bar",
         data: {
-            labels: ["Romance", "Fantasia", "Terror", "Auto Ajuda","Suspense","Drama"],
+            labels: [],
             datasets: [{
-                data: [20, 14, 7, 4,3,4],
+                data: [],
                 backgroundColor: ["#ffbd59"],
                 barPercentage: 1.0,
                 borderRadius: 15
-
             }]
         },
         options: {
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { display:false}
-            },
+            plugins: { legend: { display: false } },
             scales: {
-                x: { grid: { display: false } },
+                x: { 
+                    grid: { display: false },
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 },
+                    suggestedMax: 10
+                },
                 y: { beginAtZero: true }
             }
         }
-    })
+    });
+
+    function carregarGraficoGeneros(){
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        fetch(`/dashboard/carregarGeneros/${idUsuario}`,{
+            method:"GET"
+        })
+        .then(function(response){
+            response.json().then(function(dados){
+                console.log(dados);
+                let labels = [];
+                let quantidades = [];
+
+                for(let i = 0; i < dados.length; i++){
+                    labels.push(dados[i].genero);
+                    quantidades.push(dados[i].quantidade);
+                }
+
+                graficoGeneros.data.labels = labels;
+                graficoGeneros.data.datasets[0].data = quantidades;
+                graficoGeneros.update();
+            });
+        })
+        .catch(function(erro){
+            console.log(erro);
+        });
+    }
 
 //grafico lidos
 
-let lidos = document.getElementById("grafico_lidos").getContext("2d")
-    new Chart(lidos, {
+    const ctxLidos = grafico_lidos
+
+    let graficoLidos = new Chart(ctxLidos, {
         type: "bar",
         data: {
-            labels: ["Janeiro", "Fevereiro", "Março", "Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
+            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"],
             datasets: [{
-                data: [5,7,4,3,2,4,6,8,4,3,4,2],
+                data: [0,0,0,0,0,0,0,0,0,0,0,0],
                 backgroundColor: ["#ef737c","#ffbd59","#ffde59","#aac861","#77d268","#78e9ca","#5cd4d3","#6193c8","#786dd2","#c184d7","#d264bd","#ff749a"],
                 barPercentage: 1.0,
                 borderRadius: 15
@@ -243,14 +295,40 @@ let lidos = document.getElementById("grafico_lidos").getContext("2d")
             indexAxis: 'x',
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { display:false}
-            },
+            plugins: { legend: { display: false } },
             scales: {
                 x: { grid: { display: false } },
-                y: { beginAtZero: true }
+                y: { 
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 },
+                    suggestedMax: 10
+                }
             }
         }
-    })
+    });
+
+    function carregarGraficoLidos(){
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        fetch(`/dashboard/carregarLivrosPorMes/${idUsuario}`,{
+            method:"GET"
+        })
+        .then(function(response){
+            response.json().then(function(dados){
+                console.log(dados);
+                let quantidades = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+                for(let i = 0; i < dados.length; i++){
+                    quantidades[dados[i].mes - 1] = dados[i].quantidade;
+                }
+
+                graficoLidos.data.datasets[0].data = quantidades;
+                graficoLidos.update();
+            });
+        })
+        .catch(function(erro){
+            console.log(erro);
+        });
+    }
 
 </script>
