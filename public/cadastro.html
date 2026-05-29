@@ -24,16 +24,17 @@
             <div class="inputs_div">
                 <h3>Nome</h3>
                 <input type="text" id="nomeCadastro_ipt"><br>
+
                 <h3>Email</h3>
                 <input type="text" id="emailCadastro_ipt"><br>
+
                 <h3>Senha</h3>
                 <input type="password" id="senhaCadastro_ipt"><br>
+
                 <h3>Confirme sua senha</h3>
                 <input type="password" id="confimacaoSenhaCadastro_ipt">
 
             </div>
-
-        
 
             <button id="cadastrar_btn" onclick="Cadastrar()">Cadastrar</button><br>
         </div>
@@ -60,15 +61,12 @@ function Cadastrar() {
         return;
     }
 
-    // Enviando para o backend
-    fetch("/usuarios/cadastrar", {//ira buscar valores no endpoint nos usuarios
-        method: "POST", // O post serve para enviar para algum lugar 
-        // usado para formularios - metodo GET é para pegar algo do HEAD 
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({//cria um atributo que recebe o valor recupertado - o stryng
-                            //agora vá para o arquivo routes usuario.js
+        body: JSON.stringify({
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar

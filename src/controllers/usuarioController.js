@@ -61,6 +61,8 @@ function cadastrar(req, res) {
         return res.status(400).send("A senha deve ter pelo menos 8 caracteres!");
     }
 
+    
+
     usuarioModel.cadastrar(nome, email, senha)
         .then(function (resultado) {
             res.status(201).json({

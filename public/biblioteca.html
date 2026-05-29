@@ -41,34 +41,34 @@
     <div class="lista_livros" id="lista_livros"></div>
 
     <div id="modal_novo_livro" class="modal_review">  
-    <div class="modal_interno">
-        <h2 class="h2_modal">INSERIR NOVO LIVRO</h2>
+        <div class="modal_interno">
+            <h2 class="h2_modal">INSERIR NOVO LIVRO</h2>
 
-        <label>Título do Livro</label>
-        <input type="text" id="novo_titulo" placeholder="Ex: Amor Corrompido">
+            <label>Título do Livro</label>
+            <input type="text" id="novo_titulo" placeholder="Ex: Amor Corrompido">
 
-        <label>Autor</label>
-        <input type="text" id="novo_autor" placeholder="Ex:Ana">
+            <label>Autor</label>
+            <input type="text" id="novo_autor" placeholder="Ex:Ana">
 
-        <label>Review</label>
-        <textarea type="text" class="nova_review" id="nova_review" placeholder="Insira sua review..."></textarea>
+            <label>Review</label>
+            <textarea type="text" class="nova_review" id="nova_review" placeholder="Insira sua review..."></textarea>
 
-        <div class="bloco_nota_genero">
-            <label>Nota (0 a 10)</label>
-            <input type="number" id="novo_nota" min="0" max="10"value="" placeholder="0">
+            <div class="bloco_nota_genero">
+                <label>Nota (0 a 10)</label>
+                <input type="number" id="novo_nota" min="0" max="10"value="" placeholder="0">
 
-            <label>Genero livro</label>
-            <input type="text" id="genero_livro" class="genero_livro" placeholder="Ex: Romance">
+                <label>Genero livro</label>
+                <input type="text" id="genero_livro" class="genero_livro" placeholder="Ex: Romance">
 
-            <label >Quantidade de páginas</label>
-            <input type="number" id="quantidade_paginas" class="quantidade_paginas" placeholder="100">
+                <label >Quantidade de páginas</label>
+                <input type="number" id="quantidade_paginas" class="quantidade_paginas" placeholder="100">
+            </div>
+
+            <div class="modal_btn">
+                <button class="btn_cancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="btn_inserir" onclick="adicionarNovoLivro()">Inserir Livro</button>
+            </div>
         </div>
-
-        <div class="modal_btn">
-            <button class="btn_cancelar" onclick="fecharModal()">Cancelar</button>
-            <button class="btn_inserir" onclick="adicionarNovoLivro()">Inserir Livro</button>
-        </div>
-    </div>
     </div>
 
     <div class="futter">
@@ -86,31 +86,31 @@
 </body>
 </html>
 <script>
-//FUNCAO LOGOUT NAV BAR
+//função logout
     function redirecionar(){
         window.location = "home.html"
     }
 
-//VARIAVEIS INSERIR LIVRO
-let btnInserir = document.querySelector('.inserir_btn');
-let listaLivros = document.getElementById('lista_livros');
-let modalNovoLivro = document.getElementById('modal_novo_livro');
-let modalReview = document.getElementById('modal_review');
+//variaveis globais
+    let btnInserir = document.querySelector('.inserir_btn');
+    let listaLivros = document.getElementById('lista_livros');
+    let modalNovoLivro = document.getElementById('modal_novo_livro');
+    let modalReview = document.getElementById('modal_review');
 
-// ABRE O MODAL DE INSERIR LIVRO
-btnInserir.addEventListener('click', () => {
-    modalNovoLivro.style.display = 'flex';
-});
+// abre o modal de inserir livro
+    btnInserir.addEventListener('click', () => {
+        modalNovoLivro.style.display = 'flex';
+    });
 
-//FECHA O MODAL DE INSERIR LIVRO E LIMPOA OS CAMPOS PARA A PROXIMA REVIEW
+//fecha o modal e zera os valores
 function fecharModal() {
     modalNovoLivro.style.display = 'none';
 
-    document.getElementById('novo_titulo').value = '';
-    document.getElementById('novo_autor').value = '';
-    document.getElementById('nova_review').value = '';
-    document.getElementById('novo_nota').value = '';
-    document.getElementById('genero_livro').value = '';
+    novo_titulo.value = '';
+    novo_autor.value = '';
+    nova_review.value = '';
+    novo_nota.value = '';
+    genero_livro.value = '';
 }
 
 // botao de adicionar livro no banco
@@ -123,6 +123,7 @@ function adicionarNovoLivro() {
     let paginas = Number(quantidade_paginas.value);
     let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
+    //inseres os dados do modal de inserir livro no banco de dados
     fetch(`/biblioteca/salvarReview/${idUsuario}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -145,16 +146,17 @@ function adicionarNovoLivro() {
     });
 }
 
+//carrega dos livros inseridos dentro da div de novoBook que tem a formatação de exibição
 function carregarLivro(){
     let idUsuario = sessionStorage.getItem("ID_USUARIO")
 
-
-    fetch(`/biblioteca/carregarLivro/${idUsuario}`)
-    .then((res) => res.json())
-    .then((dados) => {
-
-        console.log(dados)
-        for(let i = 0; i < dados.length; i++){
+    fetch(`/biblioteca/carregarLivro/${idUsuario}`,{
+        method:"GET"
+    })
+    .then(function(response){
+        response.json().then(function(dados){
+            console.log(dados)
+            for(let i = 0; i < dados.length; i++){ //validação de quantos livros tem dentro do json
             let idLivros = Number(dados[i].idLivros)
             let novoBook = document.createElement('div');
             novoBook.className = 'novoBook';
@@ -165,11 +167,12 @@ function carregarLivro(){
                 <button onclick="btn_review(${idLivros})" class="btn_review">REVIEW</button>
             `;
 
-            listaLivros.appendChild(novoBook);
+            listaLivros.appendChild(novoBook);//adiciona essa div junto com as outras na biblioteca
         }
+        });
     })
-    .catch((erro) => {
-      console.log("Erro: ", erro);
+    .catch(function(erro){
+        console.log(erro);
     });
 }
 

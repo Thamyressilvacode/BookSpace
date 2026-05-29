@@ -77,6 +77,7 @@
             Projeto Desenvolvido Para Fins Educacionais por Thamyres Batista
         </div>
     </div>
+    
 </body>
 </html>
 
@@ -86,7 +87,8 @@
         window.location = "home.html"
     }
 
-// inserir meta no BD
+//KPIS
+    // inserir meta no BD
     function InserirMeta(){
     let meta = Number(input_meta.value);
     let idUsuario = sessionStorage.getItem("ID_USUARIO");
@@ -147,6 +149,7 @@
 
 // grafico de meta
 
+    // cria a porcentagem no meio do gráfico
     let centerTextPlugin = {
         id: 'centerText',
         beforeDraw: function(chart) {
@@ -170,6 +173,7 @@
         }
     };
 
+    //cria o gráfico
     let meta = grafico_meta
 
     let graficoMeta = new Chart(meta, {
@@ -219,6 +223,7 @@
 
 //grafico generos
 
+    //cria o gráfico
     const ctxBarra = grafico_generos
 
     let graficoGeneros = new Chart(ctxBarra, {
@@ -249,6 +254,7 @@
         }
     });
 
+    //carrega os dados do gráfico
     function carregarGraficoGeneros(){
         let idUsuario = sessionStorage.getItem("ID_USUARIO");
 
@@ -278,6 +284,7 @@
 
 //grafico lidos
 
+    //cria o gráfico
     const ctxLidos = grafico_lidos
 
     let graficoLidos = new Chart(ctxLidos, {
@@ -307,6 +314,7 @@
         }
     });
 
+    //carrega os dados do gráfico
     function carregarGraficoLidos(){
         let idUsuario = sessionStorage.getItem("ID_USUARIO");
 

@@ -48,12 +48,12 @@
     function carregarReview(){
     let idLivro = sessionStorage.getItem("ID_LIVRO")
 
-
-    fetch(`/review/carregarReview/${idLivro}`)
-    .then((res) => res.json())
-    .then((dados) => {
-
-        console.log(dados)
+        fetch(`/review/carregarReview/${idLivro}`,{
+        method:"GET"
+    })
+    .then(function(response){
+        response.json().then(function(dados){
+            console.log(dados)
         for(let i = 0; i < dados.length; i++){
             let idLivros = Number(dados[i].idLivros)
 
@@ -64,9 +64,11 @@
                 <div class="texto_review">${dados[i].review}</div>
             `;
         }
+        });
     })
-    .catch((erro) => {
-      console.log("Erro: ", erro);
+    .catch(function(erro){
+        console.log(erro);
     });
+
 }
 </script>
