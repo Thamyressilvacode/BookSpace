@@ -6,7 +6,7 @@ O **BookSpace** nasceu de duas grandes paixões: **literatura** e **criatividade
 
 Desde cedo, a leitura fez parte da minha vida, incentivada pela minha família. Entre minhas primeiras e mais marcantes experiências literárias está *Harry Potter*, obra que despertou ainda mais meu interesse pelo universo dos livros. Ao longo do tempo, explorei diferentes gêneros e transformei essa paixão em inspiração para desenvolver este projeto.
 
-O **BookSpace** — ou *Espaço dos Livros* — é uma plataforma criada para leitores que desejam registrar, acompanhar e compartilhar sua jornada literária.
+O **BookSpace** — ou *Espaço dos Livros* — é uma plataforma criada para leitores que desejam registrar e acompanhar sua jornada literária.
 
 A proposta é simples: a cada livro lido, o usuário pode criar uma **review**, atribuir **notas** e acompanhar seu desempenho de leitura através de uma **dashboard personalizada com métricas e estatísticas**.
 
